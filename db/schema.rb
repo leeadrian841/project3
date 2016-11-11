@@ -10,16 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161110051732) do
+ActiveRecord::Schema.define(version: 20161111084430) do
 
-  create_table "offers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "creators", force: :cascade do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_creators_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_creators_on_name"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "type"
+    t.text     "description"
+    t.integer  "price"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "creator_user_id"
+    t.integer  "acceptor_user_id"
+    t.integer  "job_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "acceptance"
+    t.boolean  "completion"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +70,28 @@ ActiveRecord::Schema.define(version: 20161110051732) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_creators", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "creator_id"
+    t.index ["user_id", "creator_id"], name: "index_users_creators_on_user_id_and_creator_id"
+  end
+
+  create_table "users_workers", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "worker_id"
+    t.index ["user_id", "worker_id"], name: "index_users_workers_on_user_id_and_worker_id"
+  end
+
+  create_table "workers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_workers_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_workers_on_name"
   end
 
 end
