@@ -1,3 +1,64 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.jumbotron {
+    margin-bottom: 0px;
+    background-image: url(https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/6-tips-for-mastering-the-dog-walk.jpg?itok=fE6fY3xl);
+    background-position: 0% 0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    height: 400px
+}
+
+//footer stuff
+
+.bottom-rule {
+    border-bottom: 1px solid black;
+}
+
+footer {
+    padding-top: 20px;
+    border-top: 10px solid #332e20;
+    background-color: white;
+}
+
+.footer-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+ }
+
+ @media (min-width: 768px) {
+    .footer-section {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+     }
+ }
+
+ footer .list-inline li:not(:first-child):not(:last-child) {
+    border-right: 1px solid lightgray;
+}
+
+.navbar-footer {
+    background-color: inherit;
+    border-radius: 0;
+    border: none;
+}
+
+
+.navbar-footer {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+footer .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+
+.leg-room { margin-bottom: 20px; padding-bottom: 20px; }
+
+.monospaced { font-family: 'Ubuntu Mono', monospaced ; }

@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108095919) do
+ActiveRecord::Schema.define(version: 20161110051732) do
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "type"
+    t.text     "description"
+    t.integer  "price"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "creator_user_id"
+    t.integer  "acceptor_user_id"
+    t.integer  "job_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -23,11 +52,6 @@ ActiveRecord::Schema.define(version: 20161108095919) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "address"
-    t.integer  "postal_code"
-    t.string   "gender"
-    t.string   "contact"
-    t.date     "birthday"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true
