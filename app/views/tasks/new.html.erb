@@ -1,10 +1,17 @@
 <h1>New Task</h1>
 
-<%= form_tag submission_path, method: :get, class: "navbar-form navbar-left search-form" do %>
-  <%= text_field_tag(
-      :search,
-      params[:search],
-      placeholder: "Search",
-      class: "form-control"
-  ) %>
+<%= form_for :task, url: tasks_path do |f| %>
+    <p>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %>
+    </p>
+    
+    <p>
+	<%= f.label :duration %><br>
+	<%= f.number_field :duration %>
+    </p>
+    
+    <p>
+	<%= f.submit %>
+    </p>
 <% end %>

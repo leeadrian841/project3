@@ -1,9 +1,21 @@
 <h1>Offered Tasks</h1>
-<p>
-    List of Offered Tasks
-</p>
+
+<% @creatorSearch.each do |t| %>
+    <ul>
+	<li><%= t.name %></li>
+	<ul>
+	    <li><%= t.duration%></li>
+	</ul>
+    </ul>
+<% end %>
 
 <h1>Accepted Tasks</h1>
-<p>
-    List of Accepted Tasks
-</p>
+
+<% @workerSearch.each do |t| %>
+    <ul>
+	<li><%= t.name %></li>
+	<ul>
+	    <li><%= t.duration%></li>
+	</ul>
+    </ul>
+<% end %>
