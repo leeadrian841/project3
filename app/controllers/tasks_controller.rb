@@ -14,23 +14,23 @@ class TasksController < ApplicationController
   end
   def create
     @task = Task.new(task_params)
-    
+
     @task.save
     p @task
-    
+
     assign_role
     redirect_to @task
   end
 
 
-  
+
   def assign_role
     current_user.add_role :creator, @task
   end
-  
+
   private
   def task_params
-    params.require(:task).permit(:name, :duration)
+    params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
   end
-  
+
 end
