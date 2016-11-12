@@ -3,7 +3,6 @@ class RolifyCreateWorkers < ActiveRecord::Migration
     create_table(:workers) do |t|
       t.string :name
       t.references :resource, :polymorphic => true
-
       t.timestamps
     end
 
