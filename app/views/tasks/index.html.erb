@@ -1,21 +1,29 @@
-<h1>Offered Tasks</h1>
-
-<% @creatorSearch.each do |t| %>
-    <ul>
-	<li><%= t.name %></li>
-	<ul>
-	    <li><%= t.duration%></li>
-	</ul>
-    </ul>
-<% end %>
-
-<h1>Accepted Tasks</h1>
-
-<% @workerSearch.each do |t| %>
-    <ul>
-	<li><%= t.name %></li>
-	<ul>
-	    <li><%= t.duration%></li>
-	</ul>
-    </ul>
-<% end %>
+<%= link_to "Add new task", new_task_path, class: "btn btn-success btn-large" %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Offered Tasks</h1>
+                <% @creatorSearch.each do |t| %>
+                <ul>
+                    <li><%= t.name %></li>
+                    <ul>
+                        <li><%= t.duration%></li>
+                    </ul>
+            </ul>
+            <% end %>
+        </div>
+        <div class="col-md-6">
+            <h1>Accepted Tasks</h1>
+            <% @workerSearch.each do |t| %>
+            <ul>
+                <li><%= t.name %></li>
+                <ul>
+                    <li><%= t.duration%></li>
+                </ul>
+        </ul>
+        <% end %>
+    </div>
+</div>
+</div>
+</div>
