@@ -7,3 +7,8 @@
     <strong>Duration:</strong>
     <%= @task.duration %>
 </p>
+
+
+<%= form_for @task, url: { action: "apply" } do |f| %>
+    <%= f.submit 'Apply for this task' %>
+<% end %>

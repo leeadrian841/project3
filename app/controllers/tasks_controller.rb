@@ -16,16 +16,23 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     @task.save
-    p @task
-
+    
     assign_role
     redirect_to @task
   end
 
-
+  def apply
+    @task = Task.find(params[:id])
+    worker_role
+    redirect_to "/tasks"
+  end
 
   def assign_role
     current_user.add_role :creator, @task
+  end
+
+  def worker_role
+    current_user.add_role :worker, @task
   end
 
   private
