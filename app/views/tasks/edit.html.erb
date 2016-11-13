@@ -1,4 +1,4 @@
-<h1>Task Details</h1>
+<h1>Edit Task</h1>
 <p>
     <strong>Name:</strong>
     <%= @task.name %>
@@ -24,11 +24,4 @@
     <%= @task.duration %>
 </p>
 
-<% if current_user=@creator %>
-<%= link_to 'Edit', edit_task_path %>
-<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% else %>
-<%= form_for @task, url: { action: "apply" } do |f| %>
-<%= f.submit 'Apply for this task' %>
-<% end %>
-<% end %>
+<%= link_to 'Save', task, method: :patch %>

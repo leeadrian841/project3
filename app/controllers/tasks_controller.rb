@@ -11,14 +11,26 @@ class TasksController < ApplicationController
   end
   def show
     @task = Task.find(params[:id])
+    @creator = current_user.roles.where(name: "creator")
+    @worker = current_user.roles.where(name: "worker")
   end
   def create
     @task = Task.new(task_params)
 
     @task.save
-    
+
     assign_role
     redirect_to @task
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   def apply
