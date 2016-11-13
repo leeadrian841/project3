@@ -1,27 +1,36 @@
 <h1>Edit Task</h1>
+<%= form_for @task do |f| %>
 <p>
-    <strong>Name:</strong>
-    <%= @task.name %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
 </p>
 
 <p>
-    <strong>Info:</strong>
-    <%= @task.info %>
+    <%= f.label :duration %><br>
+    <%= f.number_field :duration %>
 </p>
 
 <p>
-    <strong>Category:</strong>
-    <%= @task.category %>
+  <%= f.label :info %><br>
+  <%= f.text_field :info %>
 </p>
 
 <p>
-    <strong>Location:</strong>
-    <%= @task.location %>
+  <%= f.label :category %><br>
+  <%= f.text_field :category %>
 </p>
 
 <p>
-    <strong>Duration:</strong>
-    <%= @task.duration %>
+  <%= f.label :location %><br>
+  <%= f.text_field :location %>
 </p>
 
-<%= link_to 'Save', task, method: :patch %>
+<p>
+  <%= f.label :price %><br>
+  <%= f.text_field :price %>
+</p>
+
+<p>
+    <%= f.submit "Save Changes"%>
+</p>
+<% end %>

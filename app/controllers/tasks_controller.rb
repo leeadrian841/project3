@@ -48,29 +48,17 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
 
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        flash[:notice]= "Task was successfully listed."
-        redirect_to @task
-
-      else
-        flash[:error]= "There was an error in updating the task."
-        render :edit
-      end
+    @task = Task.find(params[:id])
+    if @task.update_attributes(task_params)
+      redirect_to @task
+    else
+      render 'edit'
     end
   end
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-    name = @task.name
-    if @task.destroy
-    flash[:notice] = "The listing for \"#{name}\" was deleted successfully."
-    redirect_to tasks_path
-    else
-     flash[:error] = "There was an error deleting the task."
-     render :show
-    end
   end
 
   def apply
@@ -93,7 +81,6 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
     end
