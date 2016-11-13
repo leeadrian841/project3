@@ -4,10 +4,24 @@
 </p>
 
 <p>
+    <strong>Info:</strong>
+    <%= @task.info %>
+</p>
+
+<p>
+    <strong>Category:</strong>
+    <%= @task.category %>
+</p>
+
+<p>
+    <strong>Location:</strong>
+    <%= @task.location %>
+</p>
+
+<p>
     <strong>Duration:</strong>
     <%= @task.duration %>
 </p>
-
 
 <%= form_for @task, url: { action: "apply" } do |f| %>
     <%= f.submit 'Apply for this task' %>
