@@ -26,7 +26,7 @@
 
 <% if current_user=@creator %>
 <%= link_to 'Edit', edit_task_path %>
-<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% else %>
 <%= form_for @task, url: { action: "apply" } do |f| %>
 <%= f.submit 'Apply for this task' %>

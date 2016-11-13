@@ -1,4 +1,8 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
+  # GET /tasks
+
   def index
     @creator = current_user.roles.where(name: "creator")
     @creatorSearch = Array.new
@@ -7,30 +11,66 @@ class TasksController < ApplicationController
     @workerSearch = Array.new
     @worker.each { |role| @workerSearch.push(Task.find(role.resource_id)) }
   end
+
+  # GET /tasks/new
   def new
+    @task = Task.new
   end
+
+  # GET /tasks/1
+  # GET /tasks/1.json (for ajax if needed)
   def show
     @task = Task.find(params[:id])
     @creator = current_user.roles.where(name: "creator")
     @worker = current_user.roles.where(name: "worker")
   end
-  def create
-    @task = Task.new(task_params)
 
-    @task.save
-
-    assign_role
-    redirect_to @task
-  end
-
+  # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
   end
 
-  def update
+  # POST /tasks
+
+  def create
+    @task = Task.new(task_params)
+
+    if @task.save
+      flash[:notice]= "Task was successfully listed."
+      assign_role
+      redirect_to @task
+    else
+      flash[:error]= "There was an error in creating the task."
+      render :new
+    end
   end
 
+  # PATCH/PUT /tasks/1
+
+  def update
+    respond_to do |format|
+      if @task.update(task_params)
+        flash[:notice]= "Task was successfully listed."
+        redirect_to @task
+
+      else
+        flash[:error]= "There was an error in updating the task."
+        render :edit
+      end
+    end
+  end
+
+  # DELETE /tasks/1
+  # DELETE /tasks/1.json
   def destroy
+    name = @task.name
+    if @task.destroy
+    flash[:notice] = "The listing for \"#{name}\" was deleted successfully."
+    redirect_to tasks_path
+    else
+     flash[:error] = "There was an error deleting the task."
+     render :show
+    end
   end
 
   def apply
@@ -48,8 +88,13 @@ class TasksController < ApplicationController
   end
 
   private
-  def task_params
-    params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_task
+      @task = Task.find(params[:id])
+    end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def task_params
+      params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
+    end
 end
