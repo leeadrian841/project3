@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     sign_up: 'register'
   }
 
-  resources :users
+  resources :users, :only =>[:show]
   resources :tasks do
     member do
       patch 'apply'
