@@ -11,8 +11,7 @@ class TasksController < ApplicationController
     @worker = current_user.roles.where(name: "worker")
     @workerSearch = Array.new
     @worker.each { |role| @workerSearch.push(Task.find(role.resource_id)) }
-    @Othertasks = @tasks - @creatorSearch
-    @Othertasks = @Othertasks - @workerSearch
+    @Othertasks = @tasks - @creatorSearch - @workerSearch
   end
 
   # GET /tasks/new
