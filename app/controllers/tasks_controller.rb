@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
 
   def index
-    @tasks =Task.all
+    @tasks = Task.all
     @creator = current_user.roles.where(name: "creator")
     @creatorSearch = Array.new
     @creator.each { |role| @creatorSearch.push(Task.find(role.resource_id)) }
@@ -12,6 +12,8 @@ class TasksController < ApplicationController
     @workerSearch = Array.new
     @worker.each { |role| @workerSearch.push(Task.find(role.resource_id)) }
     @Othertasks = @tasks - @creatorSearch - @workerSearch
+    @logs = Task.first.roles
+    p @logs
   end
 
   # GET /tasks/new
