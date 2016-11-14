@@ -56,6 +56,10 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    flash[:success] = "Task deleted"
+    redirect_to tasks_path
   end
 
   def apply
