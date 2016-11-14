@@ -13,3 +13,86 @@
  *= require_tree .
  *= require_self
  */
+/*Carousel*/
+#carousel-main-page {
+  padding-bottom: 20px
+}
+
+.main-page-images {
+  width: 100%;
+}
+
+/*End of Carousel*/
+
+/*Three Marketing Messages*/
+
+.marketing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/*End of Three Marketing Messages*/
+
+ //footer stuff
+
+ .bottom-rule {
+     border-bottom: 1px solid black;
+ }
+
+ footer {
+     padding-top: 20px;
+     border-top: 10px solid #332e20;
+     background-color: white;
+ }
+
+ .footer-section {
+     margin-bottom: 20px;
+     padding-bottom: 20px;
+     border-bottom: 1px solid lightgray;
+  }
+
+  @media (min-width: 768px) {
+     .footer-section {
+         margin-bottom: 0;
+         padding-bottom: 0;
+         border-bottom: none;
+      }
+  }
+
+  footer .list-inline li:not(:first-child):not(:last-child) {
+     border-right: 1px solid lightgray;
+ }
+
+ .navbar-footer {
+     background-color: inherit;
+     border-radius: 0;
+     border: none;
+ }
+
+ .navbar-footer {
+     margin-bottom: 0;
+     text-align: center;
+ }
+
+ footer .navbar .navbar-nav {
+     display: inline-block;
+     float: none;
+     vertical-align: top;
+ }
+
+ .leg-room { margin-bottom: 20px; padding-bottom: 20px; }
+
+ .monospaced { font-family: 'Ubuntu Mono', monospaced ; }

@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Credits
+
+CSS Frameworks:
+http://www.bootply.com/61935
+
+
+Images:
+https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/6-tips-for-mastering-the-dog-walk.jpg?itok=fE6fY3xl
