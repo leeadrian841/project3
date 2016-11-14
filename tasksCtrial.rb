@@ -12,7 +12,6 @@ class TasksController < ApplicationController
     @workerSearch = Array.new
     @worker.each { |role| @workerSearch.push(Task.find(role.resource_id)) }
     @Othertasks = @tasks - @creatorSearch
-    @Othertasks = @Othertasks - @workerSearch
   end
 
   # GET /tasks/new
@@ -68,10 +67,15 @@ class TasksController < ApplicationController
 
   def apply
     @task = Task.find(params[:id])
+    @creator = current_user.roles.where(name: "creator")
+    @creatorSearch = Array.new
+    @creator.each { |role| @creatorSearch.push(Task.find(role.resource_id)) }
     worker_role
+    @tasks =Task.all
+    @Othertasks = @tasks - @creatorSearch
+    @Othertasks = @Othertasks - [@task]
     redirect_to "/tasks"
   end
-
 
   def assign_role
     current_user.add_role :creator, @task
