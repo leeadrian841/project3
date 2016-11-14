@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   }
 
   resources :users, :only =>[:show]
-  resources :tasks do
-    member do
-      patch 'apply'
+  authenticate :user do
+    resources :tasks do
+      member do
+        patch 'apply'
+      end
     end
   end
 
