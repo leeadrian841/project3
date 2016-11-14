@@ -29,7 +29,7 @@
   <%= @creator.name %>
 </p>
 
-<% if (@creatorSearch.include? @task)%>
+<% if (@creator.include? @task)%>
 <%= link_to 'Edit', edit_task_path %>
 <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% else %>
