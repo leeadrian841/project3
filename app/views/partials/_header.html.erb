@@ -22,7 +22,7 @@
             <p class="navbar-text pull-right">
                 <% if user_signed_in? %>
                 Hi
-                <%= current_user.email %>
+                <%= current_user.username %>
                 |
                 <%= link_to "Edit Profile", edit_user_registration_path, method: :get, class: "navbar-link"%>
                 |

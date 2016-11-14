@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     sign_in: 'login',
     sign_out: 'logout',
     sign_up: 'register'
-  }
+  }, :controllers => {registrations: 'users/registrations'}
 
   resources :users, :only =>[:show]
   authenticate :user do
