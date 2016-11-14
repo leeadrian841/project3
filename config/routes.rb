@@ -3,12 +3,14 @@ Rails.application.routes.draw do
     sign_in: 'login',
     sign_out: 'logout',
     sign_up: 'register'
-  }
+  }, :controllers => {registrations: 'users/registrations'}
 
   resources :users, :only =>[:show]
-  resources :tasks do
-    member do
-      patch 'apply'
+  authenticate :user do
+    resources :tasks do
+      member do
+        patch 'apply'
+      end
     end
   end
 
