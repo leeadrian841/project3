@@ -6,6 +6,7 @@
                 <h1>Offered Tasks</h1>
                 <% @creatorSearch.each do |t| %>
                 <ul>
+                    <%= link_to 'Show', task_path(t) %>
                     <li><%= t.name %></li>
                     <ul>
                         <li><%= t.duration%></li>
@@ -17,6 +18,7 @@
             <h1>Accepted Tasks</h1>
             <% @workerSearch.each do |t| %>
             <ul>
+                <%= link_to 'Show', task_path(t) %>
                 <li><%= t.name %></li>
                 <ul>
                     <li><%= t.duration%></li>
@@ -24,6 +26,15 @@
         </ul>
         <% end %>
     </div>
+    <h1>All Other people's Tasks</h1>
+
+    <% @Othertasks.each do |t| %>
+    <ul>
+        <%= link_to 'Show', task_path(t) %>
+        <li><%= t.name %></li>
+      </ul>
+
+    <% end %>
 </div>
 </div>
 </div>

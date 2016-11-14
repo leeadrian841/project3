@@ -4,12 +4,14 @@ class TasksController < ApplicationController
   # GET /tasks
 
   def index
+    @tasks =Task.all
     @creator = current_user.roles.where(name: "creator")
     @creatorSearch = Array.new
     @creator.each { |role| @creatorSearch.push(Task.find(role.resource_id)) }
     @worker = current_user.roles.where(name: "worker")
     @workerSearch = Array.new
     @worker.each { |role| @workerSearch.push(Task.find(role.resource_id)) }
+    @Othertasks = @tasks - @creatorSearch
   end
 
   # GET /tasks/new
@@ -22,6 +24,8 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @creator = current_user.roles.where(name: "creator")
+    @creatorSearch = Array.new
+    @creator.each { |role| @creatorSearch.push(Task.find(role.resource_id)) }
     @worker = current_user.roles.where(name: "worker")
   end
 
