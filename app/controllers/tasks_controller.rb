@@ -72,7 +72,6 @@ class TasksController < ApplicationController
     redirect_to "/tasks"
   end
 
-
   def assign_role
     current_user.add_role :creator, @task
   end
