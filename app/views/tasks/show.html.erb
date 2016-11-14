@@ -32,6 +32,10 @@
 <% if (@creator.include? @task)%>
 <%= link_to 'Edit', edit_task_path %>
 <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% elsif (@applied.include? @task)%>
+<%= form_for @task, url: { action: "drop_role" } do |f| %>
+<%= f.submit 'Drop this task' %>
+<% end %>
 <% else %>
 <%= form_for @task, url: { action: "apply" } do |f| %>
 <%= f.submit 'Apply for this task' %>
