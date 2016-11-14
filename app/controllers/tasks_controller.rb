@@ -4,16 +4,9 @@ class TasksController < ApplicationController
   # GET /tasks
 
   def index
-    @tasks = Task.all
-    @creator = current_user.roles.where(name: "creator")
-    @creatorSearch = Array.new
-    @creator.each { |role| @creatorSearch.push(Task.find(role.resource_id)) }
-    @worker = current_user.roles.where(name: "worker")
-    @workerSearch = Array.new
-    @worker.each { |role| @workerSearch.push(Task.find(role.resource_id)) }
-    @Othertasks = @tasks - @creatorSearch - @workerSearch
-    @logs = Task.first.roles
-    p @logs
+    @creatorTasks = Task.with_role(:creator, current_user)
+    @appliedTasks = Task.with_role(:applicant, current_user)
+    @workerTasks = Task.with_role(:worker, current_user)
   end
 
   # GET /tasks/new
@@ -25,10 +18,8 @@ class TasksController < ApplicationController
   # GET /tasks/1.json (for ajax if needed)
   def show
     @task = Task.find(params[:id])
-    @creator = current_user.roles.where(name: "creator")
-    @creatorSearch = Array.new
-    @creator.each { |role| @creatorSearch.push(Task.find(role.resource_id)) }
-    @worker = current_user.roles.where(name: "worker")
+    @creator = Task.with_role(:creator, current_user)
+    @applied = Task.with_role(:applicant, current_user)
   end
 
   # GET /tasks/1/edit
