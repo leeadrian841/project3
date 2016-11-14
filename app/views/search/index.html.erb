@@ -1,0 +1,10 @@
+<h1>Other people's tasks</h1>
+<% @otherTasks.each do |t| %>
+<ul>
+  <%= link_to 'Show', task_path(t) %>
+  <li><%= t.name %></li>
+  <ul>
+      <li><%= t.duration%></li>
+  </ul>
+</ul>
+<% end %>

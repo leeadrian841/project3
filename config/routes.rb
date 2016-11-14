@@ -4,14 +4,18 @@ Rails.application.routes.draw do
     sign_out: 'logout',
     sign_up: 'register'
   }, :controllers => {registrations: 'users/registrations'}
-
+  get
   resources :users, :only =>[:show]
   authenticate :user do
     resources :tasks do
       member do
         patch 'apply'
       end
+      member do
+        patch 'drop_role'
+      end
     end
+    resources :search
   end
 
   root "users#home"

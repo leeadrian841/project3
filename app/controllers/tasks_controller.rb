@@ -34,7 +34,7 @@ class TasksController < ApplicationController
 
     if @task.save
       flash[:notice]= "Task was successfully listed."
-      assign_role
+      creator_role
       redirect_to @task
     else
       flash[:error]= "There was an error in creating the task."
@@ -60,16 +60,26 @@ class TasksController < ApplicationController
 
   def apply
     @task = Task.find(params[:id])
-    worker_role
+    applicant_role
     redirect_to "/tasks"
   end
 
-  def assign_role
+  def drop_role
+    @task = Task.find(params[:id])
+    delete_role
+    redirect_to "/tasks"
+  end
+
+  def creator_role
     current_user.add_role :creator, @task
   end
 
-  def worker_role
-    current_user.add_role :worker, @task
+  def applicant_role
+    current_user.add_role :applicant, @task
+  end
+
+  def delete_role
+    current_user.remove_role :applicant, @task
   end
 
   private
