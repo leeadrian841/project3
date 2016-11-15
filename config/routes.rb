@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  root "users#home"
-  
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
     sign_up: 'register'
   }, :controllers => {registrations: 'users/registrations'}
-  get
+
   resources :users, :only =>[:show]
   authenticate :user do
     resources :tasks do
@@ -16,9 +14,17 @@ Rails.application.routes.draw do
       member do
         patch 'drop_role'
       end
+      member do
+        patch 'accept'
+      end
     end
     resources :search
   end
 
+  patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker
+
+  root "users#home"
+  
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

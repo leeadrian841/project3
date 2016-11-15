@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  #before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
 
@@ -22,6 +22,8 @@ class TasksController < ApplicationController
     @applied = Task.with_role(:applicant, current_user)
     @applicants = User.with_role(:applicant, @task)
     @userName = User.with_role(:creator, Task.find(params[:id])).to_a.first.username
+    p @task.id, "hello"
+    p User.with_role(:creator, Task.find(params[:id])).to_a.first.id, "bye"
   end
 
   # GET /tasks/1/edit
@@ -53,6 +55,14 @@ class TasksController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def accept
+    @task = Task.find(params[:id])
+    @user = User.find(params[:worker])
+    @user.add_role :worker, @task
+    @user.remove_role :applicant, @task
+    redirect_to '/tasks'
   end
 
   # DELETE /tasks/1
