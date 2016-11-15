@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Devise</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>A-Team Services</title>
+        <%= csrf_meta_tags %>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <%= render 'partials/header' %>
-    <div class="container">
-      <% if notice %>
-      <p class='alert alert-success'>
-        <%= notice %>
-      </p>
-      <% end %>
-      <% if alert %>
-      <p class ="alert alert-danger">
-        <%= alert %>
-      </p>
-      <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </div>
-  <%= render 'partials/footer' %>
+    <body>
+        <%= render 'partials/header' %>
+        <div class="main-container">
+            <!-- <div class="row spacer"></div> -->
+            <% if notice %>
+            <div class='alert alert-success'>
+                <%= notice %>
+            </div>
+            <% end %>
+            <% if alert %>
+            <div class="alert alert-danger" role="alert">
+                <%= alert %>
+            </div>
+            <% end %>
+            <%= yield %>
+        </div>
+        <%= render 'partials/footer' %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-
-  </body>
+    </body>
 </html>
