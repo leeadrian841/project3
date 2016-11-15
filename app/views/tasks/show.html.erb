@@ -43,7 +43,7 @@
         <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
         <% end %>
     </div>
-    <div class="col-md-4 col-md-offset-1 jumbotron">
+    <div class="col-md-4 col-md-offset-1">
         <% if (@creator.include? @task)%>
         <h1>Applicants</h1>
         <% @applicants.each do |a| %>

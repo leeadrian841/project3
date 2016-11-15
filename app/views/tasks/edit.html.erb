@@ -7,39 +7,39 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <%= form_for @task do |f| %>
-        <p>
+        <div class="form-group">
             <%= f.label :name %><br>
             <%= f.text_field :name %>
-        </p>
+        </div>
 
-        <p>
+        <div class="form-group">
             <%= f.label :duration %><br>
             <%= f.number_field :duration %>
-        </p>
+        </div>
 
-        <p>
+        <div class="form-group">
             <%= f.label :info %><br>
             <%= f.text_field :info %>
-        </p>
+        </div>
 
-        <p>
+        <div class="form-group">
             <%= f.label :category %><br>
             <%= f.text_field :category %>
-        </p>
+        </div>
 
-        <p>
+        <div class="form-group">
             <%= f.label :location %><br>
             <%= f.text_field :location %>
-        </p>
+        </div>
 
-        <p>
+        <div class="form-group">
             <%= f.label :price %><br>
             <%= f.text_field :price %>
-        </p>
+        </div>
 
-        <p>
-            <%= f.submit "Save Changes", class: "btn btn-success btn-large"%>
-        </p>
+        <div>
+            <%= f.submit "Update", class: "btn btn-primary btn-large"%>
+        </div>
         <% end %>
     </div>
 </div>
