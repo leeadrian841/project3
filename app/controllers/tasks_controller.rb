@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
-
   # GET /tasks
 
   def index
@@ -21,7 +20,11 @@ class TasksController < ApplicationController
     @creator = Task.with_role(:creator, current_user)
     @applied = Task.with_role(:applicant, current_user)
     @applicants = User.with_role(:applicant, @task)
-    @userName = User.with_role(:creator, Task.find(params[:id])).to_a.first.username
+    @worker = User.with_role(:worker, @task)
+    if @worker.to_a != []
+      @workerName = @worker.to_a.first.username
+    end
+    @userName = User.with_role(:creator, @task).to_a.first.username
   end
 
   # GET /tasks/1/edit
@@ -35,12 +38,12 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-         flash[:notice]= "Task was successfully listed."
-         creator_role
-         redirect_to @task
-       else
-         redirect_to new_task_url
-         flash[:notice]= "There was an error in creating the task."
+      flash[:notice]= "Task was successfully listed."
+      creator_role
+      redirect_to @task
+    else
+      redirect_to new_task_url
+      flash[:notice]= "There was an error in creating the task."
     end
   end
 
@@ -89,12 +92,14 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    def task_params
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
-    end
+  end
+
 end
