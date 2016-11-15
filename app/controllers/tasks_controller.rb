@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
-  #before_action :set_task, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /tasks
 
   def index
@@ -100,10 +99,7 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
-
+    
     def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
     end
