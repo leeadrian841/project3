@@ -9,12 +9,12 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img class="main-page-images" src="https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/6-tips-for-mastering-the-dog-walk.jpg?itok=fE6fY3xl" alt="...">
+            <img class="main-page-images" src="https://tribecadogwalkingnyc.files.wordpress.com/2012/09/img_4828.jpg" alt="...">
             <div class="carousel-caption">
-                <h3>Dog can't walk itself?</h3>
-                <p>
+                <h2>Dog can't walk itself?</h2>
+                <h4>
                     Let our dedicated dog walkers take care of it for you!
-                </p>
+                </h4>
             </div>
         </div>
         <div class="item">
@@ -49,12 +49,12 @@
 <!-- Carousel -->
 
 <!-- Three columns of text below the carousel -->
-<div class="container marketing">
+<div class="main-page-wrapper">
 
-    <!-- Three columns of text below the carousel -->
-    <div class="row">
+<div class="container-marketing">
+    <!-- <div class="row"> -->
         <div class="col-md-4 text-center">
-            <img class="img-circle" src="http://placehold.it/140x140">
+            <img class="img-circle-main" src="http://www.bizfocus360.com/wp-content/uploads/2015/04/dogwoof.png">
             <h2>Pet Sitters</h2>
             <p>Placeholder text</p>
             <p>
@@ -62,7 +62,7 @@
             </p>
         </div>
         <div class="col-md-4 text-center">
-            <img class="img-circle" src="http://placehold.it/140x140">
+            <img class="img-circle-main" src="http://abcvillage.com/wp-content/uploads/2015/04/susanna.png">
             <h2>Babysitters</h2>
             <p>Placeholder text</p>
             <p>
@@ -70,16 +70,17 @@
             </p>
         </div>
         <div class="col-md-4 text-center">
-            <img class="img-circle" src="http://placehold.it/140x140">
-            <h2>House Cleaners</h2>
+            <img class="img-circle-main" src="http://www.pro-restore.co.uk/images/happy_cleaner.png">
+            <h2>Home Cleaners</h2>
             <p>Placeholder text</p>
             <p>
                 <a class="btn btn-default" href="#">View details »</a>
             </p>
         </div>
-    </div>
+    <!-- </div> -->
     <!-- /.row -->
     <!-- Generate Tasks Available -->
+
 
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -89,15 +90,27 @@
             <div class="col-md-12">
                 <% @allTasks.each do |task| %>
                 <div class="col-md-4">
-                        <strong> Task Name: </strong><%= task.name %>
-                        <h4><strong>Category: </strong><%= task.category %></h4>
-                        <h4><strong>Duration: </strong><%= task.duration %></h4>
-                        <h4><strong>Info: </strong><%= task.info %></h4>
-                        <h4><strong>Price: </strong><%= task.price %></h4>
+                    <strong>
+                        Task Name:
+                    </strong><%= task.name %>
+                    <h4>
+                        <strong>Category:
+                        </strong><%= task.category %></h4>
+                    <h4>
+                        <strong>Duration:
+                        </strong><%= task.duration %></h4>
+                    <h4>
+                        <strong>Info:
+                        </strong><%= task.info %></h4>
+                    <h4>
+                        <strong>Price:
+                        </strong><%= task.price %></h4>
                 </div>
                 <% end %>
             </div>
         </div>
     </div>
+
+</div>
 
     <!-- End of Generating Tasks Available -->
