@@ -16,9 +16,9 @@ Rails.application.routes.draw do
         patch 'drop_role'
       end
     end
-
-    patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker
     
+    patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker    
+
     resources :search
   end
 

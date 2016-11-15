@@ -1,7 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
-  # GET /tasks
-
+  
   def index
     @creatorTasks = Task.with_role(:creator, current_user)
     @appliedTasks = Task.with_role(:applicant, current_user)
@@ -30,6 +28,12 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+  end
+
+  def accept
+    @task = Task.find(params[:id])
+    @worker = User.find(params[:worker])
+    @worker.add_role :worker, @task
   end
 
   # POST /tasks
@@ -93,11 +97,7 @@ class TasksController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_task
-    @task = Task.find(params[:id])
-  end
-
+  
   def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
   end
