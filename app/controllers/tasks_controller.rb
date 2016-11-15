@@ -20,6 +20,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @creator = Task.with_role(:creator, current_user)
     @applied = Task.with_role(:applicant, current_user)
+    @applicants = User.with_role(:applicant, @task)
+    @userName = User.with_role(:creator, Task.find(params[:id])).to_a.first.username
   end
 
   # GET /tasks/1/edit
@@ -56,6 +58,10 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    flash[:success] = "Task deleted"
+    redirect_to tasks_path
   end
 
   def apply
