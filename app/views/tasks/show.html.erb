@@ -1,33 +1,36 @@
-<h1>Task Details</h1>
-<p>
+<div class="row spacer"></div>
+<div class="col-md-10 col-md-offset-1">
+  <h1>Task Details</h1>
+  <p>
     <strong>Name:</strong>
     <%= @task.name %>
-</p>
+  </p>
 
-<p>
+  <p>
     <strong>Info:</strong>
     <%= @task.info %>
-</p>
+  </p>
 
-<p>
+  <p>
     <strong>Category:</strong>
     <%= @task.category %>
-</p>
+  </p>
 
-<p>
+  <p>
     <strong>Location:</strong>
     <%= @task.location %>
-</p>
+  </p>
 
-<p>
+  <p>
     <strong>Duration:</strong>
     <%= @task.duration %>
-</p>
+  </p>
 
-<p>
+  <p>
     <strong>Offerer:</strong>
     <%= @userName %>
-</p>
+  </p>
+
 
 <p>
     <strong>Worker:</strong>
@@ -56,9 +59,17 @@
 <% elsif (@applied.include? @task)%>
     <%= form_for @task, url: { action: "drop_role" } do |f| %>
 	<%= f.submit 'Drop this task' %>
-    <% end %>
-<% else %>
-    <%= form_for @task, url: { action: "apply" } do |f| %>
-	<%= f.submit 'Apply for this task' %>
-    <% end %>
 <% end %>
+  </div>
+  <%= link_to 'Edit', edit_task_path, class: "btn btn-primary btn-large" %>
+  <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
+  <% elsif (@applied.include? @task)%>
+  <%= form_for @task, url: { action: "drop_role" } do |f| %>
+  <%= f.submit 'Drop this task' %>
+  <% end %>
+  <% else %>
+  <%= form_for @task, url: { action: "apply" } do |f| %>
+  <%= f.submit 'Apply for this task' %>
+  <% end %>
+  <% end %>
+</div>

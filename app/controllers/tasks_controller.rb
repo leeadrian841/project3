@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   # GET /tasks
 
   def index
@@ -42,8 +42,8 @@ class TasksController < ApplicationController
       creator_role
       redirect_to @task
     else
-      flash[:error]= "There was an error in creating the task."
-      render :new
+      redirect_to new_task_url
+      flash[:notice]= "There was an error in creating the task."
     end
   end
 
@@ -56,14 +56,6 @@ class TasksController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def accept
-    @task = Task.find(params[:id])
-    @user = User.find(params[:worker])
-    @user.add_role :worker, @task
-    @user.remove_role :applicant, @task
-    redirect_to '/tasks'
   end
 
   # DELETE /tasks/1
@@ -100,9 +92,14 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
 
-    def task_params
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
-    end
+  end
+
 end
