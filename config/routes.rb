@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, :only =>[:show]
   authenticate :user do
+    
     resources :tasks do
       member do
         patch 'apply'
@@ -14,15 +15,14 @@ Rails.application.routes.draw do
       member do
         patch 'drop_role'
       end
-      member do
-        patch 'accept'
-      end
     end
+
+    patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker
+    
     resources :search
   end
 
-  patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker
-
+  
   root "users#home"
   
   
