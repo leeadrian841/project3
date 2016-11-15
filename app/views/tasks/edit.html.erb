@@ -1,41 +1,45 @@
 <div class="row spacer"></div>
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <h1>Edit Task</h1>
-    <%= form_for @task do |f| %>
-    <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </p>
+    <div class="col-md-10 col-md-offset-1">
+        <h1>Edit Task</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <%= form_for @task do |f| %>
+        <p>
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+        </p>
 
-    <p>
-      <%= f.label :duration %><br>
-      <%= f.number_field :duration %>
-    </p>
+        <p>
+            <%= f.label :duration %><br>
+            <%= f.number_field :duration %>
+        </p>
 
-    <p>
-      <%= f.label :info %><br>
-      <%= f.text_field :info %>
-    </p>
+        <p>
+            <%= f.label :info %><br>
+            <%= f.text_field :info %>
+        </p>
 
-    <p>
-      <%= f.label :category %><br>
-      <%= f.text_field :category %>
-    </p>
+        <p>
+            <%= f.label :category %><br>
+            <%= f.text_field :category %>
+        </p>
 
-    <p>
-      <%= f.label :location %><br>
-      <%= f.text_field :location %>
-    </p>
+        <p>
+            <%= f.label :location %><br>
+            <%= f.text_field :location %>
+        </p>
 
-    <p>
-      <%= f.label :price %><br>
-      <%= f.text_field :price %>
-    </p>
+        <p>
+            <%= f.label :price %><br>
+            <%= f.text_field :price %>
+        </p>
 
-    <p>
-      <%= f.submit "Save Changes", class: "btn btn-success btn-large"%>
-    </p>
-    <% end %>
-  </div>
+        <p>
+            <%= f.submit "Save Changes", class: "btn btn-success btn-large"%>
+        </p>
+        <% end %>
+    </div>
 </div>

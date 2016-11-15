@@ -1,60 +1,62 @@
 <div class="row spacer"></div>
-<div class="col-md-10 col-md-offset-1">
-  <h1>Task Details</h1>
-  <p>
-    <strong>Name:</strong>
-    <%= @task.name %>
-  </p>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1>Task Details</h1>
+        <p>
+            <strong>Name:</strong>
+            <%= @task.name %>
+        </p>
 
-  <p>
-    <strong>Info:</strong>
-    <%= @task.info %>
-  </p>
+        <p>
+            <strong>Info:</strong>
+            <%= @task.info %>
+        </p>
 
-  <p>
-    <strong>Category:</strong>
-    <%= @task.category %>
-  </p>
+        <p>
+            <strong>Category:</strong>
+            <%= @task.category %>
+        </p>
 
-  <p>
-    <strong>Location:</strong>
-    <%= @task.location %>
-  </p>
+        <p>
+            <strong>Location:</strong>
+            <%= @task.location %>
+        </p>
 
-  <p>
-    <strong>Duration:</strong>
-    <%= @task.duration %>
-  </p>
+        <p>
+            <strong>Duration:</strong>
+            <%= @task.duration %>
+        </p>
 
-  <p>
-    <strong>Offerer:</strong>
-    <%= @userName %>
-  </p>
+        <p>
+            <strong>Offerer:</strong>
+            <%= @userName %>
+        </p>
 
-  <% if (@creator.include? @task)%>
-  <div class="col-md-6">
-    <h1>Applicants</h1>
-    <% @applicants.each do |a| %>
-    <ul>
-      <%= link_to 'Show', user_path(a) %>
-      <li><%= a.username %></li>
-    </ul>
-    <ul>
-      <%= form_for @task, url: acceptedworker_path( id: @task.id, worker: a.id ) do |f| %>
-      <%= f.submit "Accept this user" %>
-      <% end %>
-    </ul>
-    <% end %>
-  </div>
-  <%= link_to 'Edit', edit_task_path, class: "btn btn-primary btn-large" %>
-  <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
-  <% elsif (@applied.include? @task)%>
-  <%= form_for @task, url: { action: "drop_role" } do |f| %>
-  <%= f.submit 'Drop this task' %>
-  <% end %>
-  <% else %>
-  <%= form_for @task, url: { action: "apply" } do |f| %>
-  <%= f.submit 'Apply for this task' %>
-  <% end %>
-  <% end %>
+        <% if (@creator.include? @task)%>
+        <div class="col-md-6">
+            <h1>Applicants</h1>
+            <% @applicants.each do |a| %>
+            <ul>
+                <%= link_to 'Show', user_path(a) %>
+                <li><%= a.username %></li>
+            </ul>
+            <ul>
+                <%= form_for @task, url: acceptedworker_path( id: @task.id, worker: a.id ) do |f| %>
+                <%= f.submit "Accept this user" %>
+                <% end %>
+            </ul>
+            <% end %>
+        </div>
+        <%= link_to 'Edit', edit_task_path, class: "btn btn-primary btn-large" %>
+        <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
+        <% elsif (@applied.include? @task)%>
+        <%= form_for @task, url: { action: "drop_role" } do |f| %>
+        <%= f.submit 'Drop this task' %>
+        <% end %>
+    <% else %>
+        <%= form_for @task, url: { action: "apply" } do |f| %>
+        <%= f.submit 'Apply for this task' %>
+        <% end %>
+        <% end %>
+    </div>
 </div>
