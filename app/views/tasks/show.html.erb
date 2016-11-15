@@ -29,6 +29,13 @@
     <%= @userName %>
 </p>
 
+<p>
+    <strong>Worker:</strong>
+    <% if (@workerName)%>
+      <%=@workerName%>
+    <% end %>
+</p>
+
 <% if (@creator.include? @task)%>
     <div class="col-md-6">
 	<h1>Applicants</h1>

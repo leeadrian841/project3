@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  
+
   # GET /tasks
 
   def index
@@ -20,7 +20,11 @@ class TasksController < ApplicationController
     @creator = Task.with_role(:creator, current_user)
     @applied = Task.with_role(:applicant, current_user)
     @applicants = User.with_role(:applicant, @task)
-    @userName = User.with_role(:creator, Task.find(params[:id])).to_a.first.username
+    @worker = User.with_role(:worker, @task)
+    if @worker.to_a != []
+      @workerName = @worker.to_a.first.username
+    end
+    @userName = User.with_role(:creator, @task).to_a.first.username
   end
 
   # GET /tasks/1/edit
@@ -97,7 +101,7 @@ class TasksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    
+
     def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
     end
