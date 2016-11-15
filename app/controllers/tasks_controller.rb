@@ -21,6 +21,7 @@ class TasksController < ApplicationController
     @creator = Task.with_role(:creator, current_user)
     @applied = Task.with_role(:applicant, current_user)
     @applicants = User.with_role(:applicant, @task)
+    @userName = User.with_role(:creator, Task.find(params[:id])).to_a.first.username
   end
 
   # GET /tasks/1/edit
