@@ -24,6 +24,7 @@ class TasksController < ApplicationController
       @workerName = @worker.to_a.first.username
     end
     @userName = User.with_role(:creator, @task).to_a.first.username
+    @applicants = User.with_role(:applicant, @task).to_a
   end
 
   # GET /tasks/1/edit
@@ -33,12 +34,15 @@ class TasksController < ApplicationController
   end
 
   def accept
-    @task = Task.find(params[:id])
-    @worker = User.find(params[:worker])
-    @worker.add_role :worker, @task
-    @worker.remove_role :applicant, @task
-    redirect_to @task
-  end
+   @task = Task.find(params[:id])
+   @worker = User.find(params[:worker])
+   @applicants = User.with_role(:applicant, @task)
+   @worker.add_role :worker, @task
+   @applicants.to_a.each do |a|
+       a.remove_role :applicant, @task
+     end
+     redirect_to @task
+   end
 
   def reject
     @task = Task.find(params[:id])
@@ -65,12 +69,13 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
 
   def update
-    @task = Task.find(params[:id])
-    if @task.update_attributes(task_params)
-      redirect_to @task
-    else
-      render 'edit'
-    end
+   @task = Task.find(params[:id])
+   if @task.update_attributes(task_params)
+     redirect_to @task
+   else
+     redirect_to edit_task_url
+     flash[:notice]= "There was an error in editing your request."
+   end
   end
 
   # DELETE /tasks/1
