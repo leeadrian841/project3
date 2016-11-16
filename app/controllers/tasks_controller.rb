@@ -46,8 +46,8 @@ class TasksController < ApplicationController
 
   def reject
     @task = Task.find(params[:id])
-    @worker = User.find(params[:worker])
-    @worker.remove_role :applicant, @task
+    @applicants = User.find(params[:worker])
+    @applicants.remove_role :applicant, @task
     redirect_to @task
   end
 
@@ -62,7 +62,7 @@ class TasksController < ApplicationController
       redirect_to @task
     else
       redirect_to new_task_url
-      flash[:notice]= "There was an error in creating the task."
+      flash[:alert]= "There was an error in creating the task."
     end
   end
 
@@ -74,7 +74,7 @@ class TasksController < ApplicationController
      redirect_to @task
    else
      redirect_to edit_task_url
-     flash[:notice]= "There was an error in editing your request."
+     flash[:alert]= "There was an error in editing your request."
    end
   end
 
