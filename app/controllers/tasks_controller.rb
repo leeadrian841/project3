@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  
+
   def index
     @creatorTasks = Task.with_role(:creator, current_user)
     @appliedTasks = Task.with_role(:applicant, current_user)
@@ -17,6 +17,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @creator = Task.with_role(:creator, current_user)
     @applied = Task.with_role(:applicant, current_user)
+    @workingTasks = Task.with_role(:worker)
     @applicants = User.with_role(:applicant, @task)
     @worker = User.with_role(:worker, @task)
     if @worker.to_a != []
@@ -28,12 +29,22 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    redirect_to '/tasks' unless (User.with_role(:creator, @task).include? current_user)
   end
 
   def accept
     @task = Task.find(params[:id])
     @worker = User.find(params[:worker])
     @worker.add_role :worker, @task
+    @worker.remove_role :applicant, @task
+    redirect_to @task
+  end
+
+  def reject
+    @task = Task.find(params[:id])
+    @worker = User.find(params[:worker])
+    @worker.remove_role :applicant, @task
+    redirect_to @task
   end
 
   # POST /tasks
@@ -73,8 +84,17 @@ class TasksController < ApplicationController
 
   def apply
     @task = Task.find(params[:id])
-    applicant_role
-    redirect_to "/tasks"
+    @user = current_user
+    if (@user.has_role? :creator, @task || User.with_role(:worker, @task) != []) || (@user.has_role? :applicant, @task)
+        redirect_to '/tasks'
+        # flash[:notice] = "Not able to apply because I am creator/user/there is a worker"
+    # check if user is creator
+    # check if there is a worker for this task
+    # check if user has already applied
+    else
+      applicant_role
+      redirect_to "/tasks"
+    end
   end
 
   def drop_role
@@ -97,7 +117,6 @@ class TasksController < ApplicationController
 
   private
 
-  
   def task_params
       params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
   end
