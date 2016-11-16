@@ -56,11 +56,11 @@
 		    </ul>
 		<% end %>
             </div>
+            <% if !(@workingTasks.include? @task)%>
+              <%= link_to 'Edit', edit_task_path, class: "btn btn-primary btn-large" %>
 
-            <%= link_to 'Edit', edit_task_path, class: "btn btn-primary btn-large" %>
-
-            <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
-
+              <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
+            <%end %>
         <% elsif (@applied.include? @task)%>
             <%= form_for @task, url: { action: "drop_role" } do |f| %>
 		<%= f.submit 'Drop this task' %>

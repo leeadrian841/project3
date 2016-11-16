@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   around_filter :catch_not_found
-  
+
   def index
     @creatorTasks = Task.with_role(:creator, current_user)
     @appliedTasks = Task.with_role(:applicant, current_user)
