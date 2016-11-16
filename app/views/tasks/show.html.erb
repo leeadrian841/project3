@@ -63,12 +63,12 @@
             <%end %>
         <% elsif (@applied.include? @task)%>
             <%= form_for @task, url: { action: "drop_role" } do |f| %>
-		<%= f.submit 'Drop this task' %>
+		<%= f.submit 'Drop this task', class: "btn btn-danger btn-large" %>
             <% end %>
 
         <% elsif !(@workingTasks.include? @task) %>
             <%= form_for @task, url: { action: "apply" } do |f| %>
-		<%= f.submit 'Apply for this task' %>
+		<%= f.submit 'Apply for this task', class: "btn btn-success btn-large" %>
             <% end %>
         <% end %>
     </div>
