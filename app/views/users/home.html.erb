@@ -1,16 +1,9 @@
 <div id="carousel-main-page" class="carousel slide" data-ride="carousel" data-interval="5000">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-main-page" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-main-page" data-slide-to="1"></li>
-        <li data-target="#carousel-main-page" data-slide-to="2"></li>
-    </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img class="main-page-images" src="<%= asset_path( 'main-page-image-1.png' ) %>"
-             alt="...">
+            <img class="main-page-images" src="<%= asset_path( 'main-page-image-1.png') %>" alt="...">
             <div class="carousel-caption">
                 <h2>Dog can't walk itself?</h2>
                 <h4>
@@ -21,19 +14,19 @@
         <div class="item">
             <img class="main-page-images" src="http://cdn.skim.gs/images/v1/Rebekah/paying-sitter-feature/how-much-should-you-pay-your-babysitter" alt="...">
             <div class="carousel-caption">
-                <h3>Need someone to take care of your child?</h3>
-                <p>
+                <h2>Need someone to take care of your child?</h2>
+                <h4>
                     Let our pool of verified babysitters give you a piece of mind!
-                </p>
+                </h4>
             </div>
         </div>
         <div class="item">
             <img class="main-page-images" src="https://www.helpling.com.sg/assets/static/sg_video_poster-11bb71b25f735c7cba4190424416eb422e72c0c65d82405a76d7e6bd7198d639.jpg" alt="...">
             <div class="carousel-caption">
-                <h3>No time to clean?</h3>
-                <p>
+                <h2>No time to clean?</h2>
+                <h4>
                     Hand it over to our cleaning professionals and take the rest that you deserve!
-                </p>
+                </h4>
             </div>
         </div>
     </div>
@@ -48,12 +41,13 @@
 
 </div>
 <!-- Carousel -->
+<!-- Close of carousel container -->
 
 <!-- Three columns of text below the carousel -->
 <div class="main-page-wrapper">
 
-<div class="container marketing">
-    <!-- <div class="row"> -->
+    <div class="container marketing">
+        <!-- <div class="row"> -->
         <div class="col-md-4 text-center">
             <img class="img-circle-main" src="http://www.bizfocus360.com/wp-content/uploads/2015/04/dogwoof.png">
             <h2>Pet Sitters</h2>
@@ -78,49 +72,78 @@
                 <a class="btn btn-default" href="#">View details »</a>
             </p>
         </div>
-    <!-- </div> -->
-    <!-- /.row -->
-    <!-- Generate Tasks Available -->
+        <!-- </div> -->
+        <!-- /.row -->
+        <!-- Generate Tasks Available -->
+
+        <div class="col-md-12">
+
+                <div class="row text-center buffer">
+                           <div class="col-lg-12">
+
+                               <h3>Latest Listings</h3>
+
+                           </div>
+                       </div>
 
 
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Listings
-            </div>
-            <div class="col-md-12">
-                <% @allTasks.each do |task| %>
-                <div class="col-md-4">
-                    <strong>
-                        Task Name:
-                    </strong><%= task.name %>
-                    <h4>
-                        <strong>Category:
-                        </strong><%= task.category %></h4>
-                    <h4>
-                        <strong>Duration:
-                        </strong><%= task.duration %></h4>
-                    <h4>
-                        <strong>Info:
-                        </strong><%= task.info %></h4>
-                    <h4>
-                        <strong>Price:
-                        </strong><%= task.price %></h4>
+                <div class="col-md-12">
+                    <% @allTasks.each do |task| %>
+
+                    <div class="col-md-4 col-sm-6 hero-feature">
+                                    <div class="thumbnail">
+                                        <img src="http://placehold.it/800x500" alt="">
+                                        <div class="caption">
+                                            <h3><%= task.category%></h3>
+                                            <p><%= task.info%></p>
+                                            <p> *Add Date and Time* </p>
+                                            <p><strong>Location </strong><%= task.location%></p>
+                                            <p> <strong>Duration</strong> <%= task.duration%> hours</p>
+                                            <p> <strong>Price</strong> $ <%= task.price%>0   </p>
+                                            <p>
+                                                <a href="#" class="btn btn-primary">Check Out This Job</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                    <!-- <div class="col-md-4">
+                      <div class="main-task">
+                            <h4>
+                            <strong>Category
+                            </strong><%= task.category %>
+                            </h4>
+                      </div>
+                        <div class="main-task">
+                            <h4>
+                            <strong>Task Name
+                            </strong><%= task.name %>
+                            </h4>
+                        </div>
+                        <div class="main-task">
+                          <h4>
+                          <strong>Duration:
+                          </strong><%= task.duration %>
+                          </h4>
+                        </div>
+                        <div class="main-task">
+                            <h4>
+                            <strong>Info:
+                            </strong><%= task.info %>
+                            </h4>
+                        </div>
+                        <div class="main-task">
+                            <h4>
+                            <strong>Price:
+                            </strong><%= task.price %>
+                            </h4>
+                        </div>
+
+                    </div> -->
+                    <% end %>
                 </div>
-                <% end %>
-            </div>
         </div>
+
     </div>
-
-
-
-
-
-
-
-
-
-</div>
-
 
     <!-- End of Generating Tasks Available -->
