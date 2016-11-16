@@ -33,12 +33,12 @@
 
         <p>
             <strong>Worker:</strong>
-            <% if (@workerName)%>
-		<%=@workerName%>
+            <% if (@workerName) %>
+		<%= @workerName %>
             <% end %>
         </p>
 
-        <% if (@creator.include? @task)%>
+        <% if (@creator.include? @task) %>
             <div class="col-md-6">
 		<h1>Applicants</h1>
 		<% @applicants.each do |a| %>
@@ -48,27 +48,27 @@
 		    </ul>
 		    <ul>
 			<%= form_for @task, url: acceptedworker_path( id: @task.id, worker: a.id ) do |f| %>
-			    <%= f.submit "Accept this user" %>
+			    <%= f.submit 'Accept', class: "btn btn-success btn-large" %>
 			<% end %>
 			<%= form_for @task, url: rejectedworker_path( id: @task.id, worker: a.id ) do |f| %>
-			    <%= f.submit "Reject this user" %>
+			    <%= f.submit 'Reject', class: "btn btn-danger btn-large" %>
 			<% end %>
 		    </ul>
 		<% end %>
             </div>
-            <% if !(@workingTasks.include? @task)%>
+            <% if !(@workingTasks.include? @task) %>
               <%= link_to 'Edit', edit_task_path, class: "btn btn-primary btn-large" %>
 
               <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-large" %>
             <%end %>
-        <% elsif (@applied.include? @task)%>
+        <% elsif (@applied.include? @task) %>
             <%= form_for @task, url: { action: "drop_role" } do |f| %>
 		<%= f.submit 'Drop this task', class: "btn btn-danger btn-large" %>
             <% end %>
 
         <% elsif !(@workingTasks.include? @task) %>
             <%= form_for @task, url: { action: "apply" } do |f| %>
-		<%= f.submit 'Apply for this task', class: "btn btn-success btn-large" %>
+		<%= f.submit 'Apply', class: "btn btn-success btn-large" %>
             <% end %>
         <% end %>
     </div>
