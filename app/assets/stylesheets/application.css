@@ -20,8 +20,8 @@
   height: 100vh
 }
 
-.spacer {
-  height: 75px;
+body {
+  padding-top: 70px
 }
 
 .main-container {

@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+
+  around_filter :catch_not_found
   
   def index
     @creatorTasks = Task.with_role(:creator, current_user)
@@ -17,6 +19,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @creator = Task.with_role(:creator, current_user)
     @applied = Task.with_role(:applicant, current_user)
+    @workingTasks = Task.with_role(:worker)
     @applicants = User.with_role(:applicant, @task)
     @worker = User.with_role(:worker, @task)
     if @worker.to_a != []
@@ -28,12 +31,25 @@ class TasksController < ApplicationController
   # GET /tasks/1/edit
   def edit
     @task = Task.find(params[:id])
+    redirect_to '/tasks', :flash => { :alert => "Sorry, but you can't edit that task as you are not the creator." } unless (User.with_role(:creator, @task).include? current_user)
   end
 
   def accept
     @task = Task.find(params[:id])
     @worker = User.find(params[:worker])
+    @applicants = User.with_role(:applicant, @task)
     @worker.add_role :worker, @task
+    @applicants.to_a.each do |a|
+      a.remove_role :applicant, @task
+    end
+    redirect_to @task, :flash => { :notice => "This applicant is accepted." }
+  end
+
+  def reject
+    @task = Task.find(params[:id])
+    @worker = User.find(params[:worker])
+    @worker.remove_role :applicant, @task
+    redirect_to @task, :flash => { :notice => "1 applicant is just rejected." }
   end
 
   # POST /tasks
@@ -56,8 +72,9 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update_attributes(task_params)
-      redirect_to @task
+      redirect_to @task, :flash => { :notice => "Task is just updated." }
     else
+      flash[:alert] = "Sorry, but there was an error in updating. Please try again."
       render 'edit'
     end
   end
@@ -67,20 +84,25 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    flash[:success] = "Task deleted"
+    flash[:notice] = "Task successfully deleted"
     redirect_to tasks_path
   end
 
   def apply
     @task = Task.find(params[:id])
-    applicant_role
-    redirect_to "/tasks"
+    @user = current_user
+    if (@user.has_role? :creator, @task || User.with_role(:worker, @task) != []) || (@user.has_role? :applicant, @task)
+      redirect_to '/tasks', :flash => { :notice => "Not able to apply as you are a creator/applicant or there is already someone working on this task." }
+    else
+      applicant_role
+      redirect_to "/tasks", :flash => { :notice => "You have successfully applied for this task. Wait for your good news!" }
+    end
   end
 
   def drop_role
     @task = Task.find(params[:id])
     delete_role
-    redirect_to "/tasks"
+    redirect_to "/tasks", :flash => { :notice => "You just dropped 1 application." }
   end
 
   def creator_role
@@ -97,9 +119,14 @@ class TasksController < ApplicationController
 
   private
 
-  
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, :flash => { :alert => "Record not found." }
+  end
+
   def task_params
-      params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
+    params.require(:task).permit(:name, :duration, :info, :category, :location, :price)
   end
 
 end

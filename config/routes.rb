@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, :only =>[:show]
   authenticate :user do
-    
+
     resources :tasks do
       member do
         patch 'apply'
@@ -16,15 +16,16 @@ Rails.application.routes.draw do
         patch 'drop_role'
       end
     end
-    
-    patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker    
+
+    patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker
+    patch '/tasks/:id/reject/:worker' => 'tasks#reject', as: :rejectedworker
 
     resources :search
   end
 
-  
+
   root "users#home"
-  
-  
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
