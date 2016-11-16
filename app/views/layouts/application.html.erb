@@ -17,18 +17,16 @@
     <body>
         <%= render 'partials/header' %>
         <div class="main-container">
-            <div class="row">
-                <% if notice %>
-                <div class="alert alert-success col-md-10 col-md-offset-1" role="alert">
-                    <%= notice %>
-                </div>
-                <% end %>
-                <% if alert %>
-                <div class="alert alert-danger col-md-10 col-md-offset-1" role="alert">
-                    <%= alert %>
-                </div>
-                <% end %>
+            <% if notice %>
+            <div class='alert alert-success'>
+                <%= notice %>
             </div>
+            <% end %>
+            <% if alert %>
+            <div class="alert alert-danger" role="alert">
+                <%= alert %>
+            </div>
+            <% end %>
             <%= yield %>
         </div>
 

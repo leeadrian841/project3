@@ -24,7 +24,6 @@ class TasksController < ApplicationController
       @workerName = @worker.to_a.first.username
     end
     @userName = User.with_role(:creator, @task).to_a.first.username
-    @applicants = User.with_role(:applicant, @task).to_a
   end
 
   # GET /tasks/1/edit
@@ -34,20 +33,17 @@ class TasksController < ApplicationController
   end
 
   def accept
-   @task = Task.find(params[:id])
-   @worker = User.find(params[:worker])
-   @applicants = User.with_role(:applicant, @task)
-   @worker.add_role :worker, @task
-   @applicants.to_a.each do |a|
-       a.remove_role :applicant, @task
-     end
-     redirect_to @task, :flash => { :notice => "This applicant is accepted." }
-   end
+    @task = Task.find(params[:id])
+    @worker = User.find(params[:worker])
+    @worker.add_role :worker, @task
+    @worker.remove_role :applicant, @task
+    redirect_to @task, :flash => { :notice => "This applicant is accepted." }
+  end
 
   def reject
     @task = Task.find(params[:id])
-    @applicants = User.find(params[:worker])
-    @applicants.remove_role :applicant, @task
+    @worker = User.find(params[:worker])
+    @worker.remove_role :applicant, @task
     redirect_to @task, :flash => { :notice => "1 applicant is just rejected." }
   end
 
@@ -62,14 +58,13 @@ class TasksController < ApplicationController
       redirect_to @task
     else
       redirect_to new_task_url
-      flash[:alert]= "There was an error in creating the task."
+      flash[:notice]= "There was an error in creating the task."
     end
   end
 
   # PATCH/PUT /tasks/1
 
   def update
-<<<<<<< HEAD
     @task = Task.find(params[:id])
     if @task.update_attributes(task_params)
       redirect_to @task, :flash => { :notice => "Task is just updated." }
@@ -77,15 +72,6 @@ class TasksController < ApplicationController
       flash[:alert] = "Sorry, but there was an error in updating. Please try again."
       render 'edit'
     end
-=======
-   @task = Task.find(params[:id])
-   if @task.update_attributes(task_params)
-     redirect_to @task
-   else
-     redirect_to edit_task_url
-     flash[:alert]= "There was an error in editing your request."
-   end
->>>>>>> a900e5497fe602a92eafd1ac415a7b868ff18e2d
   end
 
   # DELETE /tasks/1
