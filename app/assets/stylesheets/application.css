@@ -29,12 +29,14 @@
 .carousel-caption {
   padding-bottom: 100px
 }
-.carousel-caption, h2 {
-  font-size: 38px
+.carousel-caption {
+  font-size: 38px;
+  text-align: center
 }
 
 .carousel-caption, h4 {
-  font-size: 15px
+  font-size: 15px;
+
 }
 .brand-heading {
   font-size: 50px
@@ -128,7 +130,7 @@ c.carousel-caption {
 
  footer {
      padding-top: 20px;
-     border-top: 10px solid red;
+     border-top: 1px solid black;
      background-color: white;
  }
 
