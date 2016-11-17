@@ -5,9 +5,11 @@ def home
   @creatorTasks = Task.with_role(:creator, current_user)
   @appliedTasks = Task.with_role(:applicant, current_user)
   @workingTasks = Task.with_role(:worker)
+  @completedTasks = Task.where("completed_worker= ? AND completed_creator= ?", true, true)
   @otherTasks = @tasks - @creatorTasks
   @otherTasks = @otherTasks - @appliedTasks
-  @allTasks = @otherTasks - @workingTasks
+  @otherTasks = @otherTasks - @workingTasks
+  @allTasks = @otherTasks - @completedTasks
 end
 
 def show
