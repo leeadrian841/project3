@@ -12,6 +12,7 @@ end
 
 def show
   @user = User.find(params[:id])
+  @completedTasks = User.where(completed_worker: true, completed_creator: true)
 end
 
 def create
