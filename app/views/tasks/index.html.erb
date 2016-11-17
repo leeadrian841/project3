@@ -9,17 +9,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Category</th>
                     <th>Info</th>
                     <th>Location</th>
-                    <th>Duration</th>
+                    <th>Duration (hours)</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @workerTasks.each do |t| %>
                 <tr>
-                    <td><%= t.name %></td>
+                    <td><%= t.category %></td>
                     <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
@@ -36,17 +36,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Category</th>
                     <th>Info</th>
                     <th>Location</th>
-                    <th>Duration</th>
+                    <th>Duration (hours)</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @creatorTasks.each do |t| %>
                 <tr>
-                    <td><%= t.name %></td>
+                    <td><%= t.category %></td>
                     <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
@@ -63,17 +63,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Category</th>
                     <th>Info</th>
                     <th>Location</th>
-                    <th>Duration</th>
+                    <th>Duration (hours)</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <% @appliedTasks.each do |t| %>
                 <tr>
-                    <td><%= t.name %></td>
+                    <td><%= t.category %></td>
                     <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>

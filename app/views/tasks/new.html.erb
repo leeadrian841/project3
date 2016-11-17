@@ -7,16 +7,6 @@
     <div class="col-md-10 col-md-offset-1">
         <%= form_for :task, url: tasks_path do |f| %>
         <div class="form-group">
-            <%= f.label :name %><br>
-            <%= f.text_field :name %>
-        </div>
-
-        <div class="form-group">
-            <%= f.label :info %><br>
-            <%= f.text_area :info, :rows => "4", :cols => "50"%>
-        </div>
-
-        <div class="form-group">
             <%= f.label :category %><br>
             <%= f.select(:category) do %>
             <% [['Pet sitting/Dog walking', 'Petsitting/Dogwalking'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
@@ -26,17 +16,22 @@
         </div>
 
         <div class="form-group">
+            <%= f.label :info %><br>
+            <%= f.text_area :info, :rows => "4", :cols => "50"%>
+        </div>
+
+        <div class="form-group">
             <%= f.label :location %><br>
             <%= f.text_field :location %>
         </div>
 
         <div class="form-group">
-          <%= f.label :duration %><br>
-          <%= f.number_field :duration %>
+            <%= f.label :duration, 'Duration (hours)' %><br>
+            <%= f.number_field :duration %>
         </div>
-        
+
         <div class="form-group">
-            <%= f.label :price %><br>
+            <%= f.label :price, 'Price ($)' %><br>
             <%= f.text_field :price %>
         </div>
 
