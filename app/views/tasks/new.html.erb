@@ -18,14 +18,22 @@
 
         <div class="form-group">
             <%= f.label :info %><br>
-            <%= f.text_field :info %>
+            <%= f.text_area :info, :rows => "4", :cols => "50"%>
         </div>
 
-        <div class="form-group">
-            <%= f.label :category %><br>
+        <!-- <div class="form-group">
             <%= f.text_field :category %>
-        </div>
+          </div> -->
+<div class="form-group">
+  <%= f.label :category %><br>
+  <%= f.select(:category) do %>
+  <% [['Pet sitting/Dog walking', 'Petsitting/Dogwalking'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
 
+    <%= content_tag(:option, c.first, value: c.last) %>
+  <% end %>
+<% end %>
+
+</div>
         <div class="form-group">
             <%= f.label :location %><br>
             <%= f.text_field :location %>

@@ -13,6 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-nav {
+  
+}
+
+
 /*Carousel*/
 #carousel-main-page {
   padding-bottom: 0px;
@@ -21,7 +27,7 @@
 }
 
 body {
-  padding-top: 70px
+  padding-top: 50px
 }
 
 .main-container {
