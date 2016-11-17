@@ -1,4 +1,9 @@
 <h1><%=@user.username%>'s profile</h1>
+<div class="row top">
+    <div class="col-md-10 col-md-offset-1">
+        <%= link_to "Edit Profile", edit_user_registration_path, method: :get, class: "btn btn-success btn-large" %>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <h2>Tasks completed for others</h2>
