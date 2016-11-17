@@ -26,6 +26,20 @@
   height: 100vh
 }
 
+.carousel-caption {
+  padding-bottom: 100px
+}
+.carousel-caption, h2 {
+  font-size: 38px
+}
+
+.carousel-caption, h4 {
+  font-size: 15px
+}
+.brand-heading {
+  font-size: 50px
+}
+
 body {
   padding-top: 50px;
 }
