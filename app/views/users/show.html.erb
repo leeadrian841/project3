@@ -14,7 +14,8 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Info</th>
                     <th>Location</th>
                     <th>Duration</th>
                     <th></th>
@@ -23,7 +24,8 @@
             <tbody>
                 <% @otherTasks.each do |t| %>
                 <tr>
-                    <td><%= t.name %></td>
+                    <td><%= t.category %></td>
+                    <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
                     <td><%= link_to 'More Info', task_path(t) %></td>
@@ -39,7 +41,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>Category</th>
                     <th>Info</th>
                     <th>Location</th>
                     <th>Duration</th>
@@ -49,7 +51,7 @@
             <tbody>
                 <% @userTasks.each do |t| %>
                 <tr>
-                    <td><%= t.name %></td>
+                    <td><%= t.category %></td>
                     <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
