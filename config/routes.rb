@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :search
   end
 
+  get "/contact", to: "users#contact"
 
   root "users#home"
 

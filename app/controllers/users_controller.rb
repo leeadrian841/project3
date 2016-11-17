@@ -15,6 +15,8 @@ def show
 end
 
 def create
+end
 
+def contact
 end
 end
