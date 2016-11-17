@@ -51,7 +51,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @worker = User.find(params[:worker])
     @worker.remove_role :applicant, @task
-    redirect_to @task, :flash => { :notice => "1 applicant is just rejected." }
+    redirect_to @task, :flash => { :notice => "You have just rejected an applicant." }
   end
 
   def complete
