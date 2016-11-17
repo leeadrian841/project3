@@ -15,7 +15,7 @@
  */
 
 .navbar-nav {
-  
+
 }
 
 
@@ -27,7 +27,27 @@
 }
 
 body {
-  padding-top: 50px
+  padding-top: 50px;
+}
+
+.top {
+  padding-top: 20px;
+}
+
+.btm {
+  padding-bottom: 20px;
+}
+
+.actions, .field {
+  padding-bottom: 10px;
+}
+
+.jumbotron {
+  border-radius: 20px;
+}
+
+.spacer {
+  height: 20px;
 }
 
 .main-container {
@@ -36,7 +56,7 @@ body {
 }
 
 .main-page-wrapper {
-  padding: 50px
+  padding: 50px;
 }
 
 .main-page-images {
@@ -46,7 +66,7 @@ body {
 c.carousel-caption {
   position:relative;
   bottom: 100px;
-  border: 3px solid white
+  border: 3px solid white;
 }
 
 /*End of Carousel*/
@@ -56,12 +76,12 @@ c.carousel-caption {
 .marketing {
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 100px
+  padding-top: 100px;
 }
 
 .img-circle-main {
   width: 180px;
-  height: 220px
+  height: 220px;
 }
 
 /* Center align the text within the three columns below the carousel */
@@ -89,7 +109,7 @@ c.carousel-caption {
 
 #footer-logo {
   padding-top: 40px;
-  padding-bottom: 40px
+  padding-bottom: 40px;
 }
 
  footer {

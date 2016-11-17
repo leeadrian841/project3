@@ -3,7 +3,7 @@
         <h1>New Task</h1>
     </div>
 </div>
-<div class="row">
+<div class="row btm">
     <div class="col-md-10 col-md-offset-1">
         <%= form_for :task, url: tasks_path do |f| %>
         <div class="form-group">
@@ -12,33 +12,29 @@
         </div>
 
         <div class="form-group">
-            <%= f.label :duration %><br>
-            <%= f.number_field :duration %>
-        </div>
-
-        <div class="form-group">
             <%= f.label :info %><br>
             <%= f.text_area :info, :rows => "4", :cols => "50"%>
         </div>
 
-        <!-- <div class="form-group">
-            <%= f.text_field :category %>
-          </div> -->
-<div class="form-group">
-  <%= f.label :category %><br>
-  <%= f.select(:category) do %>
-  <% [['Pet sitting/Dog walking', 'Petsitting/Dogwalking'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
+        <div class="form-group">
+            <%= f.label :category %><br>
+            <%= f.select(:category) do %>
+            <% [['Pet sitting/Dog walking', 'Petsitting/Dogwalking'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+            <% end %>
+            <% end %>
+        </div>
 
-    <%= content_tag(:option, c.first, value: c.last) %>
-  <% end %>
-<% end %>
-
-</div>
         <div class="form-group">
             <%= f.label :location %><br>
             <%= f.text_field :location %>
         </div>
 
+        <div class="form-group">
+          <%= f.label :duration %><br>
+          <%= f.number_field :duration %>
+        </div>
+        
         <div class="form-group">
             <%= f.label :price %><br>
             <%= f.text_field :price %>
