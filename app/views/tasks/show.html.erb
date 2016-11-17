@@ -22,14 +22,18 @@
             <%= @task.price %>
         </p>
         <p>
+            <%if !(@creator.include? @task)%>
             <strong>Offerer:</strong>
             <%= @userName %>
+            <%end%>
         </p>
         <p>
+            <%if !(@worker.include? current_user)%>
             <strong>Worker:</strong>
             <% if (@workerName) %>
             <%= @workerName %>
             <% end %>
+            <%end%>
         </p>
 
         <!-- is the task completed? if so, prevent alteration -->
