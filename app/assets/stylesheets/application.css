@@ -38,6 +38,18 @@ body {
   padding-bottom: 20px;
 }
 
+.actions, .field {
+  padding-bottom: 10px;
+}
+
+.jumbotron {
+  border-radius: 20px;
+}
+
+.spacer {
+  height: 20px;
+}
+
 .main-container {
   border: 0;
   margin: 0;
