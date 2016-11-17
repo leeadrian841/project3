@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Info</th>
                     <th>Location</th>
                     <th>Duration</th>
                     <th></th>
@@ -19,6 +20,7 @@
                 <% @workerTasks.each do |t| %>
                 <tr>
                     <td><%= t.name %></td>
+                    <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
                     <td><%= link_to 'More Info', task_path(t) %></td>
@@ -35,6 +37,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Info</th>
                     <th>Location</th>
                     <th>Duration</th>
                     <th></th>
@@ -44,6 +47,7 @@
                 <% @creatorTasks.each do |t| %>
                 <tr>
                     <td><%= t.name %></td>
+                    <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
                     <td><%= link_to 'More Info', task_path(t) %></td>
@@ -60,6 +64,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Info</th>
                     <th>Location</th>
                     <th>Duration</th>
                     <th></th>
@@ -69,6 +74,7 @@
                 <% @appliedTasks.each do |t| %>
                 <tr>
                     <td><%= t.name %></td>
+                    <td><%= t.info %></td>
                     <td><%= t.location %></td>
                     <td><%= t.duration %></td>
                     <td><%= link_to 'More Info', task_path(t) %></td>

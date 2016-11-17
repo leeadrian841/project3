@@ -6,39 +6,43 @@
 <div class="row btm">
     <div class="col-md-10 col-md-offset-1">
         <%= form_for @task do |f| %>
-            <div class="form-group">
-		<%= f.label :name %><br>
-		<%= f.text_field :name %>
-            </div>
+        <div class="form-group">
+            <%= f.label :name %><br>
+            <%= f.text_field :name %>
+        </div>
 
-            <div class="form-group">
-		<%= f.label :duration %><br>
-		<%= f.number_field :duration %>
-            </div>
+        <div class="form-group">
+            <%= f.label :info %><br>
+            <%= f.text_field :info %>
+        </div>
 
-            <div class="form-group">
-		<%= f.label :info %><br>
-		<%= f.text_field :info %>
-            </div>
+        <div class="form-group">
+            <%= f.label :category %><br>
+            <%= f.select(:category) do %>
+            <% [['Pet sitting/Dog walking', 'Petsitting/Dogwalking'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
+            <%= content_tag(:option, c.first, value: c.last) %>
+            <% end %>
+            <% end %>
+        </div>
 
-            <div class="form-group">
-		<%= f.label :category %><br>
-		<%= f.text_field :category %>
-            </div>
+        <div class="form-group">
+            <%= f.label :location %><br>
+            <%= f.text_field :location %>
+        </div>
 
-            <div class="form-group">
-		<%= f.label :location %><br>
-		<%= f.text_field :location %>
-            </div>
+        <div class="form-group">
+          <%= f.label :duration %><br>
+          <%= f.number_field :duration %>
+        </div>
 
-            <div class="form-group">
-		<%= f.label :price %><br>
-		<%= f.text_field :price %>
-            </div>
+        <div class="form-group">
+            <%= f.label :price %><br>
+            <%= f.text_field :price %>
+        </div>
 
-            <div>
-		<%= f.submit "Update", class: "btn btn-success btn-large"%>
-            </div>
+        <div>
+            <%= f.submit "Update", class: "btn btn-success btn-large"%>
+        </div>
         <% end %>
     </div>
 </div>
