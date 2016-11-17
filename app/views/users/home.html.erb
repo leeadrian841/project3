@@ -77,20 +77,20 @@
                             <div class="thumbnail">
                                 <img src="http://placehold.it/800x500" alt="">
                                 <div class="caption">
-                                    <h3><%= task.category%></h3>
-                                    <p><%= task.info%></p>
+                                    <h3><%= task.category %></h3>
+                                    <p><%= task.info %></p>
                                     <!-- <p> *Add Date and Time* </p> -->
                                     <p>
-                                        <strong>Location
-                                        </strong><%= task.location%></p>
+                                        <strong>Location:</strong>
+                                        <%= task.location %></p>
                                     <p>
-                                        <strong>Duration</strong>
-                                        <%= task.duration%>
+                                        <strong>Duration:</strong>
+                                        <%= task.duration %>
                                         hours</p>
                                     <p>
-                                        <strong>Price</strong>
+                                        <strong>Price:</strong>
                                         $
-                                        <%= task.price%>0
+                                        <%= task.price %>0
                                     </p>
                                     <p>
                                         <%= link_to 'Check This Out!', task_path(task), class: "btn btn-primary btn-large" %>
