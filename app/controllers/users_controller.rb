@@ -12,9 +12,14 @@ end
 
 def show
   @user = User.find(params[:id])
+  @completedTasks = Task.where("completed_worker= ? AND completed_creator= ?", true, true)
+  @userTasks = @completedTasks.with_role(:creator, @user)
+  @otherTasks = @completedTasks - @userTasks
 end
 
 def create
+end
 
+def contact
 end
 end

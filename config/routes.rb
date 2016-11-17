@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       member do
         patch 'drop_role'
       end
+      member do
+        patch 'complete'
+      end
     end
 
     patch '/tasks/:id/accept/:worker' => 'tasks#accept', as: :acceptedworker
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
     resources :search
   end
 
+  get "/contact", to: "users#contact"
 
   root "users#home"
 

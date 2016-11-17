@@ -3,9 +3,10 @@ class TasksController < ApplicationController
   around_filter :catch_not_found
 
   def index
-    @creatorTasks = Task.with_role(:creator, current_user)
+    @completedTasks = Task.where("completed_worker= ? AND completed_creator= ?", true, true)
+    @creatorTasks = Task.with_role(:creator, current_user) - @completedTasks
     @appliedTasks = Task.with_role(:applicant, current_user)
-    @workerTasks = Task.with_role(:worker, current_user)
+    @workerTasks = Task.with_role(:worker, current_user) - @completedTasks
   end
 
   # GET /tasks/new
@@ -22,6 +23,7 @@ class TasksController < ApplicationController
     @workingTasks = Task.with_role(:worker)
     @applicants = User.with_role(:applicant, @task)
     @worker = User.with_role(:worker, @task)
+    @completedTasks = Task.where("completed_worker= ? AND completed_creator= ?", true, true)
     if @worker.to_a != []
       @workerName = @worker.to_a.first.username
     end
@@ -50,6 +52,25 @@ class TasksController < ApplicationController
     @worker = User.find(params[:worker])
     @worker.remove_role :applicant, @task
     redirect_to @task, :flash => { :notice => "1 applicant is just rejected." }
+  end
+
+  def complete
+    @task = Task.find(params[:id])
+    @workingTasks = Task.with_role(:worker)
+    @worker = User.with_role(:worker, @task).to_a.first
+    @creator = User.with_role(:creator, @task).to_a.first
+    if current_user == @worker
+      @task.update_attribute(:completed_worker, true)
+    elsif current_user == @creator
+      @task.update_attribute(:completed_creator, true)
+    end
+    if @worker != []
+      if @task.completed_worker && @task.completed_creator
+        redirect_to user_path(current_user), :flash => { :notice => "The task has been confirmed as completed by both parties." }
+      else
+        redirect_to user_path(current_user), :flash => { :notice => "You've just indicated that the task has been completed." }
+      end
+    end
   end
 
   # POST /tasks
