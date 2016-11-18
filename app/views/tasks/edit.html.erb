@@ -9,7 +9,7 @@
         <div class="form-group">
             <%= f.label :category %><br>
             <%= f.select(:category) do %>
-            <% [['Pet sitting/Dog walking', 'Petsitting/Dogwalking'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
+            <% [['Petsitting', 'Petsitting'], ['Babysitting', 'Babysitting'], ['Home cleaning', 'Home cleaning']].each do |c| -%>
             <%= content_tag(:option, c.first, value: c.last) %>
             <% end %>
             <% end %>
